@@ -1,0 +1,15 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: node-exporter-{{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: node-exporter
+spec:
+  selector:
+    app: node-exporter
+  type: ClusterIP
+  ports:
+  - port: 9100
+    targetPort: 9100

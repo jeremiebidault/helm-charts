@@ -1,0 +1,6 @@
+tolerations: ~
+# tolerations:
+#   - effect: NoSchedule
+#     key: longhorn
+#     operator: Equal
+#     value: storage

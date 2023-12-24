@@ -1,14 +1,47 @@
 apiVersion: v1
 entries:
+  kube-state-metrics:
+  - apiVersion: v2
+    appVersion: v2.10.0
+    created: "2023-12-24T16:42:05.895105688Z"
+    description: A Helm chart for Kubernetes
+    digest: ca2bc6b576823293a43dea737a42a8fb059d502b11a24656e150ffdf70af734c
+    name: kube-state-metrics
+    type: application
+    urls:
+    - https://jeremiebidault.github.com/helm-charts/kube-state-metrics-1.0.0.tgz
+    version: 1.0.0
+  nexus:
+  - apiVersion: v2
+    appVersion: 3.63.0
+    created: "2023-12-24T16:42:05.895325766Z"
+    description: A Helm chart for Kubernetes
+    digest: 4209425094c0271e5d719b5905437bd6be362999211c1eaf30c7b53fc04e8341
+    name: nexus
+    type: application
+    urls:
+    - https://jeremiebidault.github.com/helm-charts/nexus-1.0.0.tgz
+    version: 1.0.0
+  node-exporter:
+  - apiVersion: v2
+    appVersion: v1.6.1
+    created: "2023-12-24T16:42:05.895469165Z"
+    description: A Helm chart for Kubernetes
+    digest: 2a1efa3a17f5013d946574c71ebdb2f43ebca23280c57828b43e8edcb4269117
+    name: node-exporter
+    type: application
+    urls:
+    - https://jeremiebidault.github.com/helm-charts/node-exporter-1.0.0.tgz
+    version: 1.0.0
   prometheus:
   - apiVersion: v2
     appVersion: v2.47.1
-    created: "2023-12-24T16:20:43.767823189Z"
+    created: "2023-12-24T16:42:05.895729751Z"
     description: A Helm chart for Kubernetes
-    digest: fe7e5b56abbb3b7aff947cd44e1304a3f34759aaf7e6a9eee7c8dfdcc4b8db1f
+    digest: 3234aee265a2686ab5b3ae504d5d2d47b3b9c8af91a96919a9364d3532f345dd
     name: prometheus
     type: application
     urls:
     - https://jeremiebidault.github.com/helm-charts/prometheus-1.0.0.tgz
     version: 1.0.0
-generated: "2023-12-24T16:20:43.767322432Z"
+generated: "2023-12-24T16:42:05.89485663Z"
