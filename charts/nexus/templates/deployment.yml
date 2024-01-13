@@ -3,18 +3,18 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: nexus
-  name: nexus-{{ .Release.Name }}
+    app: {{ template "app.name" . }}
+  name: {{ template "app.fullname" . }}
   namespace: {{ .Release.Namespace }}
 spec:
   selector:
     matchLabels:
-      app: nexus
+      app: {{ template "app.name" . }}
   replicas: 1
   template:
     metadata:
       labels:
-        app: nexus
+        app: {{ template "app.name" . }}
     spec:
       {{- if .Values.affinity }}
       affinity: {{ .Values.affinity | toYaml | nindent 8 }}
@@ -40,16 +40,20 @@ spec:
             - containerPort: {{ .port }}
             {{- end }}
           volumeMounts:
+            {{- if .Values.persistence }}
             - name: nexus-data
               mountPath: /nexus-data
+            {{- end }}
           {{- if .Values.env }}
           env: {{ .Values.env | toYaml | nindent 12 }}
           {{- end }}
       volumes:
+        {{- if .Values.persistence }}
         - name: nexus-data
-          {{- if .Values.persistence.enabled }}
           persistentVolumeClaim:
-            claimName: {{ .Values.persistence.existingClaim | default .Values.persistence.claimName }}
-          {{- else }}
-          emptyDir: {}
-          {{- end }}
+            {{- if .Values.persistence.existingClaim }}
+            claimName: {{ .Values.persistence.existingClaim }}
+            {{- else }}
+            claimName: {{ template "app.fullname" . }}
+            {{- end }}
+        {{- end }}

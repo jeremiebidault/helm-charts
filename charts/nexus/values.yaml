@@ -1,3 +1,14 @@
+nameOverride: ~
+
+fullNameOverride: ~
+
+persistence: ~
+  # existingClaim: ~
+  # storageClassName: longhorn
+  # accessModes:
+  #   - ReadWriteOnce
+  # size: 8Gi
+
 ingress:
   enabled: false
   hosts:
@@ -25,14 +36,6 @@ env:
       -XX:+UnlockExperimentalVMOptions
       -XX:+UseCGroupMemoryLimitForHeap
       -Djava.util.prefs.userRoot=/nexus-data/javaprefs
-
-persistence:
-  enabled: false
-  existingClaim: ~
-  claimName: nexus-data
-  storageClassName: local-storage
-  accessModes: ReadWriteOnce
-  size: 8Gi
 
 tolerations: ~
 # tolerations:

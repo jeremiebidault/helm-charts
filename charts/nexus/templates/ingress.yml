@@ -3,10 +3,10 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: nexus-{{ .Release.Name }}
+  name: {{ template "app.fullname" . }}
   namespace: {{ .Release.Namespace }}
   labels:
-    app: nexus
+    app: {{ template "app.name" . }}
   {{- if .Values.ingress.annotations }}
   annotations: {{ .Values.ingress.annotations | toYaml | nindent 4 }}
   {{- end }}

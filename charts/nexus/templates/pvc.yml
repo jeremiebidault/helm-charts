@@ -1,20 +1,23 @@
-{{- if .Values.persistence.enabled }}
+{{- if .Values.persistence }}
 {{- if not .Values.persistence.existingClaim }}
+
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ .Values.persistence.claimName }}
+  name: {{ template "app.fullname" . }}
   namespace: {{ .Release.Namespace }}
   annotations:
     helm.sh/resource-policy: keep
-  labels:
 spec:
   accessModes:
-    - {{ .Values.persistence.accessMode }}
+    {{- range $value := .Values.persistence.accessModes }}
+    - {{ $value }}
+    {{- end }}
   storageClassName: {{ .Values.persistence.storageClassName }}
   resources:
     requests:
       storage: {{ .Values.persistence.size }}
+
 {{- end }}
 {{- end }}
