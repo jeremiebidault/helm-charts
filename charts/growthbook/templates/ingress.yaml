@@ -1,0 +1,41 @@
+{{- if .Values.growthbook.ingress.enabled }}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ template "growthbook.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: {{ template "growthbook.name" . }}
+  {{- if .Values.growthbook.ingress.annotations }}
+  annotations: {{ .Values.growthbook.ingress.annotations | toYaml | nindent 4 }}
+  {{- end }}
+spec:
+  ingressClassName: {{ .Values.growthbook.ingress.className }}
+  tls:
+    - hosts:
+        - {{ .Values.growthbook.ingress.appOrigin }}
+        - {{ .Values.growthbook.ingress.apiHost }}
+      secretName: {{ .Values.growthbook.ingress.tls.secret }}
+  rules:
+    - host: {{ .Values.growthbook.ingress.appOrigin }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ template "growthbook.name" . }}
+                port:
+                  number: 3000
+    - host: {{ .Values.growthbook.ingress.apiHost }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ template "growthbook.name" . }}
+                port:
+                  number: 3100
+{{- end }}

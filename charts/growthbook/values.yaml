@@ -1,0 +1,48 @@
+growthbook:
+  ingress:
+    enabled: true
+    tls:
+      secret: true
+    appOrigin: growthbook.horizon.ovh
+    apiHost: growthbook-api.horizon.ovh
+    className: traefik
+    annotations:
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+  env:
+    - name: JWT_SECRET
+      value: helloworld
+    - name: APP_ORIGIN
+      value: https://growthbook.horizon.ovh
+    - name: API_HOST
+      value: https://growthbook-api.horizon.ovh
+    - name: MONGODB_URI
+      value: mongodb://root:password@growthbook-mongodb:27017/growthbook?authSource=admin
+  persistence: ~
+  # persistence:
+  #   existingClaim: ~
+  #   storageClassName: longhorn
+  #   accessModes:
+  #     - ReadWriteOnce
+  #   size: 8Gi
+  tolerations: ~
+  # tolerations:
+  #   - effect: NoSchedule
+  #     key: foo
+  #     operator: Equal
+  #     value: bar
+  affinity: ~
+  # affinity:
+  #   nodeAffinity:
+  #     requiredDuringSchedulingIgnoredDuringExecution:
+  #       nodeSelectorTerms:
+  #         - matchExpressions:
+  #             - key: foo
+  #               operator: In
+  #               values:
+  #                 - bar
+
+mongodb:
+  global:
+    storageClass: longhorn
+  auth:
+    rootPassword: password
