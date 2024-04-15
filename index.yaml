@@ -1,5 +1,20 @@
 apiVersion: v1
 entries:
+  growthbook:
+  - apiVersion: v2
+    appVersion: 2.7.0
+    created: "2024-04-15T09:16:24.412119929Z"
+    dependencies:
+    - name: mongodb
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: 14.6.1
+    description: A Helm chart for Kubernetes
+    digest: bb0815a9f5b64eb73ae3dfbc2f58c795ec90dc7bcd4099f585599b393f4d8200
+    name: growthbook
+    type: application
+    urls:
+    - https://github.com/jeremiebidault/helm-charts/releases/download/growthbook-1.0.0/growthbook-1.0.0.tgz
+    version: 1.0.0
   hello-world:
   - apiVersion: v2
     appVersion: 1.21.3
@@ -55,4 +70,4 @@ entries:
     urls:
     - https://github.com/jeremiebidault/helm-charts/releases/download/prometheus-1.0.0/prometheus-1.0.0.tgz
     version: 1.0.0
-generated: "2024-01-19T13:40:54.023884082Z"
+generated: "2024-04-15T09:16:24.540123789Z"
